@@ -1,0 +1,17 @@
+{
+  "plugins": [
+    {
+      "name": "File uploader",
+      "className": "FileUploader",
+      "description": "Adds a file upload to the editor.",
+      "path": "src/index.ts",
+      "uiComponents": [
+        {
+          "name": "fileUploaderButton",
+          "type": "Button",
+          "iconPath": "theme/icons/ckeditor.svg"
+        }
+      ]
+    }
+  ]
+}
