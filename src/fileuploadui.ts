@@ -10,6 +10,7 @@
 import type { Locale } from 'ckeditor5/src/utils';
 import { Plugin } from 'ckeditor5/src/core';
 import { FileDialogButtonView } from 'ckeditor5/src/upload';
+import * as mime from 'mime/lite';
 import { createFileTypeRegExp } from './utils';
 import fileUploadIcon from '../theme/icons/file-arrow-up-solid.svg';
 import type UploadFileCommand from './uploadfilecommand';
@@ -43,7 +44,7 @@ export default class FileUploadUI extends Plugin {
 			const fileTypesRegExp = createFileTypeRegExp( fileTypes );
 
 			view.set( {
-				acceptedType: fileTypes.map( type => `image/${ type }` ).join( ',' ),
+				acceptedType: fileTypes.map( type => mime.getType( type ) ).join( ',' ),
 				allowMultipleFiles: true
 			} );
 
