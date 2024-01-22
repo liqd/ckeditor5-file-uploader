@@ -7,7 +7,9 @@
  * @module image/imageupload/imageuploadui
  */
 
-import type { Locale } from 'ckeditor5/src/utils';
+import { type Locale } from 'ckeditor5/src/utils';
+// eslint-disable-next-line
+import { add } from '@ckeditor/ckeditor5-utils/src/translation-service';
 import { Plugin } from 'ckeditor5/src/core';
 import { FileDialogButtonView } from 'ckeditor5/src/upload';
 import * as mime from 'mime/lite';
@@ -35,6 +37,8 @@ export default class FileUploadUI extends Plugin {
 	 * @inheritDoc
 	 */
 	public init(): void {
+		// Add translations
+		add( 'de', { 'Insert file': 'Datei einfügen' } );
 		const editor = this.editor;
 		const t = editor.t;
 		const componentCreator = ( locale: Locale ) => {
