@@ -12,7 +12,7 @@ import { type Locale } from 'ckeditor5/src/utils';
 import { add } from '@ckeditor/ckeditor5-utils/src/translation-service';
 import { Plugin } from 'ckeditor5/src/core';
 import { FileDialogButtonView } from 'ckeditor5/src/upload';
-import * as mime from 'mime/lite';
+import * as mime from 'mime';
 import { createFileTypeRegExp } from './utils';
 import fileUploadIcon from '../theme/icons/file-arrow-up-solid.svg';
 import type UploadFileCommand from './uploadfilecommand';

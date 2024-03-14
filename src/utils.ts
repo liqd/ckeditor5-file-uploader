@@ -10,6 +10,7 @@
 /* global fetch, File */
 
 import type { ViewElement } from 'ckeditor5/src/engine';
+import * as mime from 'mime';
 
 /**
  * Creates a regular expression used to test for image files.
@@ -22,9 +23,16 @@ import type { ViewElement } from 'ckeditor5/src/engine';
  */
 export function createFileTypeRegExp( types: Array<string> ): RegExp {
 	// Sanitize the MIME type name which may include: "+", "-" or ".".
-	const regExpSafeNames = types.map( type => type.replace( '+', '\\+' ) );
+	const regExpSafeNames = types.flatMap( type => {
+		const safeType = type.replace( '+', '\\+' );
+		const mimeType = mime.getType( safeType );
+		if ( mimeType ) {
+			return [ mimeType ];
+		}
+		return [];
+	} );
 
-	return new RegExp( `^(application|image)\\/(${ regExpSafeNames.join( '|' ) })$` );
+	return new RegExp( `^${ regExpSafeNames.join( '|' ) }$` );
 }
 
 /**
