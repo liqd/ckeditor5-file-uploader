@@ -20,9 +20,9 @@
   },
   "files": [
     "lang",
+    "src/*.js",
     "src/**/*.js",
     "src/**/*.d.ts",
-    "src/*.js",
     "theme",
     "build",
     "ckeditor5-metadata.json"
@@ -78,8 +78,7 @@
     "start": "ckeditor5-package-tools start",
     "stylelint": "stylelint --quiet --allow-empty-input 'theme/**/*.css'",
     "test": "ckeditor5-package-tools test",
-    "prepare": "npm run ts:build && ckeditor5-package-tools export-package-as-javascript",
-    "prepack": "npm run ts:build && ckeditor5-package-tools export-package-as-javascript",
+    "prepare": "npm run prepublishOnly",
     "prepublishOnly": "npm run ts:build && ckeditor5-package-tools export-package-as-javascript",
     "postpublish": "npm run ts:clear && ckeditor5-package-tools export-package-as-typescript",
     "translations:collect": "ckeditor5-package-tools translations:collect",
