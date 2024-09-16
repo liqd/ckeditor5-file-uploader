@@ -145,32 +145,32 @@ export default class FileUploadEditing extends Plugin {
 		// For every image file, a new file loader is created and a placeholder image is
 		// inserted into the content. Then, those images are uploaded once they appear in the model
 		// (see Document#change listener below).
-		this.listenTo( clipboardPipeline, 'inputTransformation', ( evt, data ) => {
-			const fetchableFiles = Array.from( editor.editing.view.createRangeIn( data.content ) )
-				.map( value => value.item as ViewElement )
-				.filter( viewElement =>
-					isLocalFile( viewElement ) &&
-					!viewElement.getAttribute( 'uploadProcessed' ) )
-				.map( viewElement => { return { promise: fetchLocalFile( viewElement ), fileElement: viewElement }; } );
+		// this.listenTo( clipboardPipeline, 'inputTransformation', ( evt, data ) => {
+		// 	const fetchableFiles = Array.from( editor.editing.view.createRangeIn( data.content ) )
+		// 		.map( value => value.item as ViewElement )
+		// 		.filter( viewElement =>
+		// 			isLocalFile( viewElement ) &&
+		// 			!viewElement.getAttribute( 'uploadProcessed' ) )
+		// 		.map( viewElement => { return { promise: fetchLocalFile( viewElement ), fileElement: viewElement }; } );
 
-			if ( !fetchableFiles.length ) {
-				return;
-			}
+		// 	if ( !fetchableFiles.length ) {
+		// 		return;
+		// 	}
 
-			const writer = new UpcastWriter( editor.editing.view.document );
+		// 	const writer = new UpcastWriter( editor.editing.view.document );
 
-			for ( const fetchableFile of fetchableFiles ) {
-				// Set attribute marking that the image was processed already.
-				writer.setAttribute( 'uploadProcessed', true, fetchableFile.fileElement );
+		// 	for ( const fetchableFile of fetchableFiles ) {
+		// 		// Set attribute marking that the image was processed already.
+		// 		writer.setAttribute( 'uploadProcessed', true, fetchableFile.fileElement );
 
-				const loader = fileRepository.createLoader( fetchableFile.promise );
+		// 		const loader = fileRepository.createLoader( fetchableFile.promise );
 
-				if ( loader ) {
-					writer.setAttribute( 'href', '', fetchableFile.fileElement );
-					writer.setAttribute( 'uploadId', loader.id, fetchableFile.fileElement );
-				}
-			}
-		} );
+		// 		if ( loader ) {
+		// 			writer.setAttribute( 'href', '', fetchableFile.fileElement );
+		// 			writer.setAttribute( 'uploadId', loader.id, fetchableFile.fileElement );
+		// 		}
+		// 	}
+		// } );
 
 		// Prevents from the browser redirecting to the dropped image.
 		editor.editing.view.document.on( 'dragover', ( evt, data ) => {

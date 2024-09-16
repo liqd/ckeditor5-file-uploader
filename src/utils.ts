@@ -71,11 +71,8 @@ export function fetchLocalFile( file: ViewElement ): Promise<File> {
  * @param node The node to check.
  */
 export function isLocalFile( node: ViewElement ): boolean {
-	if ( !node.is( 'element', 'a' ) || !node.getAttribute( 'href' ) ) {
-		return false;
-	}
-
-	return !!node.getAttribute( 'href' ); }
+	return false;
+}
 
 /**
  * Extracts an file type based on its blob representation or its source.
